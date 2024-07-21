@@ -1,0 +1,30 @@
+{
+  "name": "discord-baker-belle-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prebuild": "npm run format && npm run lint",
+    "build": "tsc",
+    "deploy": "node dist/deploy.js",
+    "start": "node dist/index.js",
+    "format": "npx prettier src --write",
+    "lint": "npx eslint src/**"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@typescript-eslint/eslint-plugin": "^7.16.1",
+    "eslint": "^8",
+    "eslint-config-prettier": "^8",
+    "prettier": "3.3.3",
+    "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "discord.js": "^14.15.3",
+    "dotenv": "^16.4.5",
+    "googleapis": "^140.0.1"
+  }
+}
