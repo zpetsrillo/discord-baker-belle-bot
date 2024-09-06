@@ -2,11 +2,12 @@ import {
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
+  ChatInputCommandInteraction,
   SlashCommandBuilder,
   SlashCommandStringOption,
   SlashCommandUserOption,
 } from "discord.js"
-import { SlashCommand, SlashCommandInteraction } from "./baseCommand"
+import { SlashCommand } from "./baseCommand"
 
 const userOption = new SlashCommandUserOption()
   .setName("user")
@@ -23,7 +24,7 @@ export class FunBanCommand implements SlashCommand {
     .addUserOption(userOption)
     .addStringOption(reasonOption)
 
-  async handler(interaction: SlashCommandInteraction): Promise<void> {
+  async handler(interaction: ChatInputCommandInteraction): Promise<void> {
     const user = interaction.options.getUser(userOption.name)
     const reason =
       interaction.options.getString(reasonOption.name) ?? "No reason provided"

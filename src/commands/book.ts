@@ -1,12 +1,13 @@
 import {
   ActionRowBuilder,
+  ChatInputCommandInteraction,
   ModalActionRowComponentBuilder,
   ModalBuilder,
   SlashCommandBuilder,
   TextInputBuilder,
   TextInputStyle,
 } from "discord.js"
-import { SlashCommand, SlashCommandInteraction } from "./baseCommand"
+import { SlashCommand } from "./baseCommand"
 import { Books } from "../services/books"
 import { getBookEmbed } from "../components/embeds/book"
 
@@ -15,7 +16,7 @@ export class BookCommand implements SlashCommand {
     .setName("book")
     .setDescription("Search for a Book")
 
-  async handler(interaction: SlashCommandInteraction): Promise<void> {
+  async handler(interaction: ChatInputCommandInteraction): Promise<void> {
     const modal = new ModalBuilder()
       .setCustomId("searchModal")
       .setTitle("Search for a book")

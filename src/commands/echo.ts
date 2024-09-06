@@ -1,5 +1,5 @@
-import { SlashCommandBuilder } from "discord.js"
-import { SlashCommand, SlashCommandInteraction } from "./baseCommand"
+import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js"
+import { SlashCommand } from "./baseCommand"
 
 export class EchoCommand implements SlashCommand {
   command = new SlashCommandBuilder()
@@ -12,7 +12,7 @@ export class EchoCommand implements SlashCommand {
         .setRequired(true)
     )
 
-  async handler(interaction: SlashCommandInteraction): Promise<void> {
+  async handler(interaction: ChatInputCommandInteraction): Promise<void> {
     const input = interaction.options.getString("input")
 
     if (typeof input != "string") {

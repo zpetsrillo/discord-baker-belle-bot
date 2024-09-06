@@ -2,10 +2,11 @@ import {
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
+  ChatInputCommandInteraction,
   GuildMember,
   SlashCommandBuilder,
 } from "discord.js"
-import { SlashCommand, SlashCommandInteraction } from "./baseCommand"
+import { SlashCommand } from "./baseCommand"
 import { GuildUtil } from "../util/guild"
 import assert from "assert"
 
@@ -44,7 +45,7 @@ export class GameRolesCommand implements SlashCommand {
     .setName("game-roles")
     .setDescription("Grant server roles for different games")
 
-  async handler(interaction: SlashCommandInteraction): Promise<void> {
+  async handler(interaction: ChatInputCommandInteraction): Promise<void> {
     if (!interaction.guild) {
       throw new Error("Command only meant for use within Guilds")
     }
@@ -87,10 +88,9 @@ export class GameRolesCommand implements SlashCommand {
         (game) => game.id == buttonInteraction.customId
       )
 
-      assert(
-        gameRole != undefined,
-        "Interaction ID doesn't exist in GAME_ROLES"
-      )
+      if (!gameRole) {
+        throw new Error("Interaction ID doesn't exist in GAME_ROLES")
+      }
 
       if (member instanceof GuildMember) {
         const selectedRole = guild.getRole(gameRole.role)

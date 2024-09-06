@@ -1,7 +1,7 @@
-import { SlashCommandInteraction } from "./baseCommand"
+import { ChatInputCommandInteraction } from "discord.js"
 
 export async function handleError(
-  interaction: SlashCommandInteraction
+  interaction: ChatInputCommandInteraction
 ): Promise<void> {
   if (interaction.replied || interaction.deferred) {
     await interaction.followUp({

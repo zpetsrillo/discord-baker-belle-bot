@@ -1,13 +1,10 @@
 import {
-  SlashCommandBuilder,
   ChatInputCommandInteraction,
-  CacheType,
+  SlashCommandBuilder,
   SlashCommandOptionsOnlyBuilder,
 } from "discord.js"
 
-export type SlashCommandInteraction = ChatInputCommandInteraction<CacheType>
-
 export interface SlashCommand {
   command: SlashCommandBuilder | SlashCommandOptionsOnlyBuilder
-  handler: (interaction: SlashCommandInteraction) => Promise<void>
+  handler: (interaction: ChatInputCommandInteraction) => Promise<void>
 }
